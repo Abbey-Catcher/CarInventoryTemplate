@@ -11,7 +11,7 @@ namespace CarInventory
 {
     public partial class Form1 : Form
     {
-        List<Car> list = new List<Car>();
+        List<Car> cars = new List<Car>();
 
         public Form1()
         {
@@ -29,10 +29,49 @@ namespace CarInventory
             mileage = mileageInput.Text;
 
             Car newCar = new Car(year, make, colour, mileage);
-            //newCar.year = year;
+            newCar.year = year;
 
             //Car newCar2 = new Car();
             //newCar2.year = "2010";
+
+            //for (int i = 0; i < cars.Count; i++)
+            //{
+            //    outputLabel.Text += $"{cars[i].make} {cars[i].colour}\n";
+            //}
+
+            displayCars();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            //for (int i = 0; i < cars.Count; i++)
+            //{
+            //    if (cars[i].make == makeInput.Text)
+            //    {
+            //        cars.RemoveAt(i);
+            //    }
+            //}
+
+            foreach (Car c in cars)
+            {
+                if (c.make == makeInput.Text)
+                {
+                    cars.Remove(c);
+                    break;
+                }
+            }
+
+            displayCars();
+        }
+
+        private void displayCars()
+        {
+            outputLabel.Text = "";
+
+            foreach (Car c in cars)
+            {
+                outputLabel.Text += $"{c.make} {c.colour} {c.year} {c.mileage}\n";
+            }
         }
     }
 }
